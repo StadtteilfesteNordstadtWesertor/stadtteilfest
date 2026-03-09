@@ -1,205 +1,401 @@
-<!doctype html>
+from pathlib import Path
+import base64, textwrap, json
+
+base = Path("/mnt/data")
+files = {
+    "background": base / "hintergrund.jpeg",
+    "poster": base / "plakat.jpeg",
+    "symbols": base / "symbole.png",
+    "headline": base / "Überschrift.png",
+}
+
+def to_data_uri(path):
+    mime = "image/jpeg" if path.suffix.lower() in [".jpg", ".jpeg"] else "image/png"
+    b64 = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{b64}"
+
+data_uris = {k: to_data_uri(v) for k, v in files.items()}
+
+html = f"""<!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stadtteilfest Wesertor</title>
-
+<title>Feministisches Stadtteilfest Wesertor</title>
 <style>
-
-body{
-font-family: system-ui, Arial, sans-serif;
-margin:0;
-background:#f2f2f2;
-color:#111;
-line-height:1.5;
-}
-
-.container{
-max-width:700px;
-margin:auto;
-padding:20px;
-}
-
-h1{
-font-size:32px;
-margin-bottom:5px;
-}
-
-h2{
-margin-top:30px;
-}
-
-.box{
-background:white;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-.select{
-font-size:18px;
-padding:10px;
-width:100%;
-margin-bottom:20px;
-}
-
-.big{
-font-size:20px;
-font-weight:bold;
-}
-
-.footer{
-margin-top:30px;
-font-weight:bold;
-}
-
+  :root {{
+    --pink: #e7b7d8;
+    --sky: #a7c7e8;
+    --paper: rgba(255,255,255,0.78);
+    --ink: #111111;
+    --frame: rgba(255,255,255,0.9);
+    --shadow: rgba(0,0,0,0.22);
+  }}
+  * {{ box-sizing: border-box; }}
+  html, body {{ margin:0; min-height:100%; }}
+  body {{
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: #e9e1e7;
+  }}
+  .page {{
+    min-height: 100vh;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.04)),
+      url('{data_uris["background"]}');
+    background-size: cover;
+    background-position: center top;
+    padding: 14px;
+  }}
+  .frame {{
+    min-height: calc(100vh - 28px);
+    border: 6px solid var(--frame);
+    padding: 12px;
+    position: relative;
+  }}
+  .toolbar {{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom: 18px;
+  }}
+  .language {{
+    appearance: none;
+    border: 2px solid rgba(0,0,0,0.15);
+    background: rgba(255,255,255,0.92);
+    border-radius: 999px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }}
+  .hero {{
+    text-align:center;
+    padding: 4px 8px 8px;
+  }}
+  .eyebrow {{
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+    letter-spacing: 0.36em;
+    font-size: clamp(18px, 4vw, 28px);
+    margin: 4px 0 8px;
+  }}
+  .headline-img {{
+    width: min(100%, 760px);
+    display:block;
+    margin: 0 auto;
+  }}
+  .place {{
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: clamp(26px, 7vw, 52px);
+    color: var(--pink);
+    text-shadow:
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      2px 2px 0 #000,
+      0 6px 0 #000;
+  }}
+  .subline {{
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+    letter-spacing: 0.18em;
+    font-size: clamp(18px, 4vw, 30px);
+    margin-top: 10px;
+  }}
+  .panel {{
+    margin: 18px auto 22px;
+    max-width: 860px;
+    background: var(--paper);
+    padding: 18px 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  }}
+  .intro {{
+    font-weight: 800;
+    line-height: 1.28;
+    font-size: clamp(21px, 4.8vw, 31px);
+    margin: 0 0 12px;
+  }}
+  .bodycopy {{
+    font-weight: 800;
+    line-height: 1.26;
+    font-size: clamp(18px, 4.1vw, 28px);
+  }}
+  .bodycopy p {{ margin: 0 0 10px; }}
+  .strip {{
+    text-align:center;
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: clamp(24px, 6vw, 46px);
+    margin: 12px 0 18px;
+  }}
+  .symbols {{
+    display:block;
+    width:min(100%, 760px);
+    margin: 0 auto 18px;
+  }}
+  .facts {{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px auto 10px;
+    max-width: 860px;
+  }}
+  .fact {{
+    text-align:center;
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+    letter-spacing: 0.18em;
+    font-size: clamp(18px, 4vw, 30px);
+    font-weight: 700;
+  }}
+  .footer {{
+    max-width: 860px;
+    margin: 16px auto 0;
+    background: rgba(255,255,255,0.74);
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.45;
+  }}
+  @media (max-width: 680px) {{
+    .page {{ padding: 8px; }}
+    .frame {{ min-height: calc(100vh - 16px); border-width: 5px; padding: 8px; }}
+    .facts {{ grid-template-columns: 1fr; gap: 2px; }}
+    .fact {{ padding: 2px 0; }}
+    .toolbar {{ margin-bottom: 10px; }}
+  }}
 </style>
 </head>
-
 <body>
+<div class="page">
+  <main class="frame">
+    <div class="toolbar">
+      <select id="languageSelect" class="language" aria-label="Language"></select>
+    </div>
 
-<div class="container">
+    <section class="hero">
+      <div class="eyebrow" id="titleTop">feministisches</div>
+      <img class="headline-img" src="{data_uris["headline"]}" alt="" />
+      <div class="place" id="titlePlace">wesertor</div>
+      <div class="subline" id="titleBottom">für Frauen, Kinder und Queers</div>
+    </section>
 
-<select id="language" class="select"></select>
+    <section class="panel">
+      <p class="intro" id="intro"></p>
+      <div class="bodycopy" id="contentCopy"></div>
+    </section>
 
-<div class="box">
+    <div class="strip" id="stripText"></div>
+    <img class="symbols" src="{data_uris["symbols"]}" alt="" />
 
-<h1 id="title">Feministisches Stadtteilfest</h1>
-<div class="big" id="place">Wesertor</div>
+    <section class="facts">
+      <div class="fact" id="dateValue"></div>
+      <div class="fact" id="timeValue"></div>
+      <div class="fact" id="locationValue"></div>
+    </section>
 
-<p id="intro"></p>
-
-</div>
-
-<div class="box">
-<h2 id="programTitle"></h2>
-<p id="program"></p>
-</div>
-
-<div class="box">
-<h2 id="inviteTitle"></h2>
-<p id="invite"></p>
-</div>
-
-<div class="box footer" id="extras"></div>
-
+    <div class="footer" id="footerNote"></div>
+  </main>
 </div>
 
 <script>
+const translations = {{
+  de: {{
+    label: "Deutsch",
+    titleTop: "feministisches",
+    titlePlace: "wesertor",
+    titleBottom: "für Frauen, Kinder und Queers",
+    intro: "Wir laden euch herzlich ein zu unserem Stadtteilfest am 28.3 im Sodensternpark von 14-18 Uhr.",
+    paragraphs: [
+      "Wir, das sind Frauen und queere Menschen aus der Nachbarschaft. Wir wünschen uns Momente, an denen wir als Nachbarschaft zusammenkommen und uns kennenlernen können.",
+      "Deswegen veranstalten wir dieses Fest! Es wird ein Kuchenbuffet, Programm für Kinder und eine kleine Ausstellung zu unserer Stadt geben.",
+      "Erzählt es weiter:",
+      "Bringt eure Freundinnen, Nachbarinnen und Kinder mit! Wir freuen uns außerdem über Kuchen oder Herzhaftes für's Buffet.",
+      "Wir sehen uns beim Fest im Sodensternpark!"
+    ],
+    stripText: "Hüpfburg, Essen, Getränke und mehr!",
+    dateValue: "28.03",
+    timeValue: "14:00-18:00",
+    locationValue: "sodensternpark",
+    footerNote: "Diese mobile Website bleibt unter demselben Link erreichbar und kann später leicht weiter an euer finales Design angepasst werden."
+  }},
+  en: {{
+    label: "English",
+    titleTop: "feminist",
+    titlePlace: "wesertor",
+    titleBottom: "for women, kids and queers",
+    intro: "We cordially invite you to our neighbourhood festival on 28 March in Sodensternpark from 2 to 6 p.m.",
+    paragraphs: [
+      "We are women and queer people from the neighbourhood. We want to create moments where we can come together as a neighbourhood and get to know each other.",
+      "That's why we're organising this festival! There will be a cake buffet, a programme for children and a small exhibition about our city.",
+      "Spread the word:",
+      "Bring your friends, neighbours and children! We would also be delighted if you could bring cakes or savoury snacks for the buffet.",
+      "See you at the festival in Sodensternpark!"
+    ],
+    stripText: "Bouncy castle, food, drinks and more!",
+    dateValue: "28.03",
+    timeValue: "2:00-6:00 pm",
+    locationValue: "sodensternpark",
+    footerNote: "This mobile website stays at the same link and can easily be refined later with your final design."
+  }},
+  es: {{
+    label: "Español",
+    titleTop: "festival feminista",
+    titlePlace: "wesertor",
+    titleBottom: "para mujeres, peques y queers",
+    intro: "Les invitamos cordialmente a nuestra fiesta del barrio el 28 de marzo en el Sodensternpark, de 14:00 a 18:00 horas.",
+    paragraphs: [
+      "Somos mujeres y personas queer del barrio. Queremos crear momentos en los que podamos reunirnos como vecinas y conocernos.",
+      "¡Por eso organizamos esta fiesta! Habrá un bufé de tartas, un programa para niños y una pequeña exposición sobre nuestra ciudad.",
+      "Corre la voz:",
+      "¡Trae a tus amigas, vecinas e hijos! También agradeceremos cualquier tarta o aperitivo salado para el bufé.",
+      "¡Nos vemos en la fiesta en el parque Sodensternpark!"
+    ],
+    stripText: "¡Castillo hinchable, comida, bebidas y más!",
+    dateValue: "28.03",
+    timeValue: "14:00-18:00",
+    locationValue: "sodensternpark",
+    footerNote: "Este sitio móvil mantiene el mismo enlace y más adelante puede ajustarse fácilmente a su diseño final."
+  }},
+  fr: {{
+    label: "Français",
+    titleTop: "fête féministe",
+    titlePlace: "wesertor",
+    titleBottom: "pour les femmes, les enfants et les queers",
+    intro: "Nous vous invitons cordialement à notre fête de quartier le 28 mars au Sodensternpark de 14h à 18h.",
+    paragraphs: [
+      "Nous, ce sont des femmes et des personnes queer du quartier. Nous souhaitons créer des moments où nous pouvons nous réunir en tant que voisin·es et faire connaissance.",
+      "C'est pourquoi nous organisons cette fête ! Il y aura un buffet de gâteaux, un programme pour les enfants et une petite exposition sur notre ville.",
+      "Faites passer le mot :",
+      "Venez avec vos amies, vos voisines et vos enfants ! Nous serions également ravies si vous apportiez des gâteaux ou des mets salés pour le buffet.",
+      "Rendez-vous à la fête au Sodensternpark !"
+    ],
+    stripText: "Château gonflable, nourriture, boissons et plus !",
+    dateValue: "28.03",
+    timeValue: "14h00-18h00",
+    locationValue: "sodensternpark",
+    footerNote: "Ce site mobile reste au même lien et pourra ensuite être rapproché encore davantage de votre design final."
+  }},
+  tr: {{
+    label: "Türkçe",
+    titleTop: "feminist",
+    titlePlace: "wesertor",
+    titleBottom: "kadınlar, çocuklar ve queerler için",
+    intro: "28 Mart günü saat 14-18 arasında Sodensternpark'ta düzenleyeceğimiz mahalle festivaline sizleri davet ediyoruz.",
+    paragraphs: [
+      "Bizler, mahalledeki kadınlar ve queer bireyleriz. Mahalle sakinleri olarak bir araya gelip tanışabileceğimiz anlar yaşamak istiyoruz.",
+      "Bu nedenle bu festivali düzenliyoruz! Kek büfesi, çocuklar için program ve şehrimizle ilgili küçük bir sergi olacak.",
+      "Arkadaşlarınıza da haber verin:",
+      "Arkadaşlarınızı, komşularınızı ve çocuklarınızı da getirin! Ayrıca, büfeye kek veya tuzlu atıştırmalıklar getirirseniz çok seviniriz.",
+      "Sodensternpark'taki festivalde görüşmek üzere!"
+    ],
+    stripText: "Şişme oyun parkı, yiyecek, içecek ve daha fazlası!",
+    dateValue: "28.03",
+    timeValue: "14:00-18:00",
+    locationValue: "sodensternpark",
+    footerNote: "Bu mobil site aynı bağlantıda kalır ve daha sonra nihai tasarımınıza kolayca daha da yaklaştırılabilir."
+  }},
+  ar: {{
+    label: "العربية",
+    titleTop: "مهرجان نسوي",
+    titlePlace: "فيسرتور",
+    titleBottom: "للنساء والأطفال والكوير",
+    intro: "ندعوكم بحرارة إلى حفل الحي الذي سنقيمه في 28 مارس في حديقة سودنستيرن من الساعة 2 إلى 6 مساءً.",
+    paragraphs: [
+      "نحن نساء وأشخاص كوير من الحي. نرغب في خلق أوقات نجتمع فيها كجيران ونتعرّف إلى بعضنا البعض.",
+      "لهذا السبب نقيم هذا الحفل! سيكون هناك بوفيه كعك وبرنامج للأطفال ومعرض صغير عن مدينتنا.",
+      "انشروا الخبر:",
+      "أحضروا صديقاتكم وجيرانكم وأطفالكم! ونرحب أيضًا بأي كعك أو مأكولات مالحة تودون إضافتها إلى البوفيه.",
+      "نراكم في المهرجان في حديقة سودنستيرن!"
+    ],
+    stripText: "قلعة مطاطية وطعام ومشروبات والمزيد!",
+    dateValue: "28.03",
+    timeValue: "2:00-6:00 مساءً",
+    locationValue: "حديقة سودنستيرن",
+    footerNote: "يبقى هذا الموقع المحمول على الرابط نفسه ويمكن تعديله لاحقًا بسهولة ليقترب أكثر من التصميم النهائي."
+  }},
+  ru: {{
+    label: "Русский",
+    titleTop: "феминистский",
+    titlePlace: "везертор",
+    titleBottom: "для женщин, детей и квир-людей",
+    intro: "Мы сердечно приглашаем вас на наш районный праздник, который состоится 28 марта в парке Sodensternpark с 14 до 18 часов.",
+    paragraphs: [
+      "Мы — женщины и квир-люди из нашего района. Мы хотим создать моменты, когда мы, как соседи, можем собраться вместе и познакомиться друг с другом.",
+      "Именно поэтому мы устраиваем этот праздник! Будет организован буфет с пирожными, программа для детей и небольшая выставка, посвящённая нашему городу.",
+      "Расскажите об этом своим друзьям:",
+      "Приводите своих подруг, соседок и детей! Мы также будем рады, если вы принесёте пирожные или солёные закуски для буфета.",
+      "Увидимся на празднике в парке Sodensternpark!"
+    ],
+    stripText: "Надувной замок, еда, напитки и многое другое!",
+    dateValue: "28.03",
+    timeValue: "14:00-18:00",
+    locationValue: "sodensternpark",
+    footerNote: "Этот мобильный сайт останется по той же ссылке, а позже его можно будет ещё ближе подстроить под финальный дизайн."
+  }}
+}};
 
-const translations={
+const select = document.getElementById("languageSelect");
+Object.keys(translations).forEach((lang) => {{
+  const option = document.createElement("option");
+  option.value = lang;
+  option.textContent = translations[lang].label;
+  select.appendChild(option);
+}});
 
-de:{
-title:"Feministisches Stadtteilfest",
-place:"Wesertor",
-intro:"Wir laden euch herzlich ein zu unserem Stadtteilfest am 28.3 im Sodensternpark von 14–18 Uhr.",
-programTitle:"Was euch erwartet",
-program:"Kuchenbuffet, Programm für Kinder und eine kleine Ausstellung zu unserer Stadt.",
-inviteTitle:"Kommt vorbei!",
-invite:"Bringt eure Freundinnen, Nachbarinnen und Kinder mit! Wir freuen uns außerdem über Kuchen oder Herzhaftes fürs Buffet.",
-extras:"Hüpfburg · Essen · Getränke und mehr!"
-},
+const els = {{
+  titleTop: document.getElementById("titleTop"),
+  titlePlace: document.getElementById("titlePlace"),
+  titleBottom: document.getElementById("titleBottom"),
+  intro: document.getElementById("intro"),
+  contentCopy: document.getElementById("contentCopy"),
+  stripText: document.getElementById("stripText"),
+  dateValue: document.getElementById("dateValue"),
+  timeValue: document.getElementById("timeValue"),
+  locationValue: document.getElementById("locationValue"),
+  footerNote: document.getElementById("footerNote")
+}};
 
-en:{
-title:"Feminist Neighbourhood Festival",
-place:"Wesertor",
-intro:"We cordially invite you to our neighbourhood festival on 28 March in Sodensternpark from 2 to 6 pm.",
-programTitle:"What to expect",
-program:"Cake buffet, programme for children and a small exhibition about our city.",
-inviteTitle:"Spread the word",
-invite:"Bring your friends, neighbours and children! We would also be delighted if you could bring cakes or savoury snacks.",
-extras:"Bouncy castle · Food · Drinks and more!"
-},
+function applyLanguage(lang) {{
+  const t = translations[lang] || translations.de;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-es:{
-title:"Fiesta feminista del barrio",
-place:"Wesertor",
-intro:"Les invitamos cordialmente a nuestra fiesta del barrio el 28 de marzo en el Sodensternpark de 14:00 a 18:00.",
-programTitle:"Qué habrá",
-program:"Bufé de tartas, programa para niñas y niños y una pequeña exposición sobre nuestra ciudad.",
-inviteTitle:"Corre la voz",
-invite:"¡Trae a tus amigas, vecinas e hijos! También agradeceremos cualquier tarta o aperitivo salado.",
-extras:"Castillo hinchable · Comida · Bebidas y más"
-},
+  els.titleTop.textContent = t.titleTop;
+  els.titlePlace.textContent = t.titlePlace;
+  els.titleBottom.textContent = t.titleBottom;
+  els.intro.textContent = t.intro;
+  els.stripText.textContent = t.stripText;
+  els.dateValue.textContent = t.dateValue;
+  els.timeValue.textContent = t.timeValue;
+  els.locationValue.textContent = t.locationValue;
+  els.footerNote.textContent = t.footerNote;
 
-fr:{
-title:"Fête féministe de quartier",
-place:"Wesertor",
-intro:"Nous vous invitons cordialement à notre fête de quartier le 28 mars au Sodensternpark de 14h à 18h.",
-programTitle:"Au programme",
-program:"Buffet de gâteaux, programme pour les enfants et petite exposition sur notre ville.",
-inviteTitle:"Venez nombreuses",
-invite:"Venez avec vos amies, vos voisines et vos enfants ! Nous serions ravies si vous apportiez des gâteaux ou mets salés.",
-extras:"Château gonflable · Nourriture · Boissons et plus"
-},
+  els.contentCopy.innerHTML = "";
+  t.paragraphs.forEach((text) => {{
+    const p = document.createElement("p");
+    p.textContent = text;
+    els.contentCopy.appendChild(p);
+  }});
 
-tr:{
-title:"Feminist Mahalle Festivali",
-place:"Wesertor",
-intro:"28 Mart günü saat 14-18 arasında Sodensternpark'ta düzenleyeceğimiz mahalle festivaline sizleri davet ediyoruz.",
-programTitle:"Sizi neler bekliyor",
-program:"Kek büfesi, çocuklar için program ve şehrimizle ilgili küçük bir sergi.",
-inviteTitle:"Arkadaşlarınızı da getirin",
-invite:"Komşularınızı, arkadaşlarınızı ve çocuklarınızı getirin! Ayrıca büfeye kek veya atıştırmalık getirebilirsiniz.",
-extras:"Şişme oyun parkı · Yiyecek · İçecek ve daha fazlası"
-},
+  select.value = lang;
+  const params = new URLSearchParams(window.location.search);
+  params.set("lang", lang);
+  history.replaceState({{}}, "", `${{window.location.pathname}}?${{params.toString()}}`);
+}}
 
-ar:{
-title:"مهرجان الحي النسوي",
-place:"فيسرتور",
-intro:"ندعوكم بحرارة إلى حفل الحي في 28 مارس في حديقة سودنستيرن من الساعة 2 إلى 6 مساءً.",
-programTitle:"ما الذي سيحدث",
-program:"بوفيه كعك وبرنامج للأطفال ومعرض صغير عن مدينتنا.",
-inviteTitle:"أخبروا أصدقاءكم",
-invite:"أحضروا صديقاتكم وجيرانكم وأطفالكم! يمكنكم أيضاً إحضار كعك أو وجبات خفيفة.",
-extras:"قلعة مطاطية · طعام · مشروبات وأكثر"
-},
+const params = new URLSearchParams(window.location.search);
+const initialLang = params.get("lang") && translations[params.get("lang")]
+  ? params.get("lang")
+  : ((navigator.language || "de").slice(0,2) in translations ? (navigator.language || "de").slice(0,2) : "de");
 
-ru:{
-title:"Феминистский праздник района",
-place:"Везертор",
-intro:"Мы сердечно приглашаем вас на районный праздник 28 марта в парке Sodensternpark с 14 до 18 часов.",
-programTitle:"Что будет",
-program:"Буфет с пирожными, программа для детей и небольшая выставка о нашем городе.",
-inviteTitle:"Приходите вместе",
-invite:"Приводите своих подруг, соседок и детей! Можно также принести пирожные или закуски.",
-extras:"Надувной замок · Еда · Напитки и многое другое"
-}
-
-}
-
-const select=document.getElementById("language")
-
-Object.keys(translations).forEach(lang=>{
-let option=document.createElement("option")
-option.value=lang
-option.textContent=lang.toUpperCase()
-select.appendChild(option)
-})
-
-function setLang(lang){
-
-let t=translations[lang]
-
-document.getElementById("title").textContent=t.title
-document.getElementById("place").textContent=t.place
-document.getElementById("intro").textContent=t.intro
-document.getElementById("programTitle").textContent=t.programTitle
-document.getElementById("program").textContent=t.program
-document.getElementById("inviteTitle").textContent=t.inviteTitle
-document.getElementById("invite").textContent=t.invite
-document.getElementById("extras").textContent=t.extras
-
-document.documentElement.dir = lang==="ar" ? "rtl" : "ltr"
-
-}
-
-select.addEventListener("change",e=>setLang(e.target.value))
-
-setLang("de")
-
+applyLanguage(initialLang);
+select.addEventListener("change", (e) => applyLanguage(e.target.value));
 </script>
-
 </body>
 </html>
+"""
+
+out = base / "index_mobile_design.html"
+out.write_text(html, encoding="utf-8")
+print(f"Saved {out}")
