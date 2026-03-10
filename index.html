@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Feministisches Stadtteilfest Wesertor</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --pink: #e7b7d8;
@@ -169,9 +169,25 @@ font-family: 'Patrick Hand', cursive;
 font-size: clamp(20px,4vw,28px);
 line-height: 1.35;
 }
+  [dir="rtl"] .copy,
+[dir="rtl"] .intro,
+[dir="rtl"] .strip,
+[dir="rtl"] .fact,
+[dir="rtl"] button {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+  [dir="rtl"] .copy,
+[dir="rtl"] .intro {
+  text-align: right;
+}
+  [dir="rtl"] .copy {
+  line-height: 1.6;
+}
+  
   .copy p {
     margin: 0 0 10px;
   }
+  
   .strip {
     text-align: center;
     font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
@@ -386,28 +402,28 @@ const translations = {
     footerNote: "Daha sonra erişilebilirlik, tuvaletler, sessiz alanlar veya diğer pratik bilgiler burada eklenebilir."
   },
   ar: {
-    label: "العربية",
-    homeTop: "مهرجان نسوي",
-    homeBottom: "للنساء والأطفال ومجتع الميم",
-    pickText: "اختاروا اللغة",
-    backText: "← اللغات",
-    detailTop: "مهرجان نسوي",
-    detailPlace: "فيسرتور",
-    detailBottom: "للنساء والأطفال ومجتع الميم",
-    intro: "ندعوكم بكل ترحاب إلى حفل الحي الذي سنقيمه في 28 مارس في حديقة سودنستيرن من الساعة 2 إلى 6 مساءً.",
-    paragraphs: [
-      "نحن نساء ومجتمع الميم من الحي. نرغب في قضاء أوقات ممتعة مع جيراننا للتعارف.",
-      "لهذا السبب نقيم هذا الحفل! سيكون هناك بوفيه كعك وبرنامج للأطفال ومعرض صغير عن مدينتنا.",
-      "انشروا الخبر:",
-      "أحضروا اصدقائكم وجيرانكم وأطفالكم! نرحب أيضًا بأي كعك أو مأكولات لذيذة تودون إضافتها إلى البوفيه.",
-      "نراكم في المهرجان في حديقة سودنستيرن!"
-    ],
-    stripText: "قلعة مطاطية وطعام ومشروبات والمزيد!",
-    dateValue: "28.03",
-    timeValue: "2:00-6:00 مساءً",
-    locationValue: "حديقة سودنستيرن",
-    footerNote: "يمكن لاحقًا إضافة معلومات هنا حول سهولة الوصول، ودورات المياه، والأماكن الهادئة، أو تفاصيل عملية أخرى."
-  },
+  label: "العربية",
+  homeTop: "مهرجان نسوي",
+  homeBottom: "للنساء والأطفال ومجتمع الميم",
+  pickText: "اختاروا اللغة",
+  backText: "← اللغات",
+  detailTop: "مهرجان نسوي",
+  detailPlace: "فيسرتور",
+  detailBottom: "للنساء والأطفال ومجتمع الميم",
+  intro: "ندعوكم بكل ترحاب إلى حفل الحي الذي سنقيمه في 28 مارس في حديقة سودنستيرن من الساعة 2 إلى 6 مساءً.",
+  paragraphs: [
+    "نحن نساء ومجتمع الميم من الحي. نرغب في قضاء أوقات ممتعة مع جيراننا للتعارف.",
+    "لهذا السبب نقيم هذا الحفل! سيكون هناك بوفيه كعك وبرنامج للأطفال ومعرض صغير عن مدينتنا.",
+    "انشروا الخبر:",
+    "أحضروا أصدقاءكم وجيرانكم وأطفالكم! نرحب أيضًا بأي كعك أو مأكولات لذيذة تودون إضافتها إلى البوفيه.",
+    "نراكم في المهرجان في حديقة سودنستيرن!"
+  ],
+  stripText: "قلعة مطاطية وطعام ومشروبات والمزيد!",
+  dateValue: "28.03",
+  timeValue: "2:00-6:00 مساءً",
+  locationValue: "حديقة سودنستيرن",
+  footerNote: "يمكن لاحقًا إضافة معلومات هنا حول سهولة الوصول ودورات المياه والأماكن الهادئة أو تفاصيل عملية أخرى."
+},
   ru: {
     label: "Русский",
     homeTop: "феминистский",
