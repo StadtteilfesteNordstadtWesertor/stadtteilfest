@@ -163,6 +163,7 @@
     font-size: clamp(21px, 4.8vw, 30px);
     line-height: 1.25;
     font-weight: 800;
+    font-family: 'Patrick Hand', cursive;
   }
   .copy {
 font-family: 'Patrick Hand', cursive;
@@ -280,6 +281,15 @@ line-height: 1.35;
 </div>
 
 <script>
+const headerTexts = {
+  homeTop: "",
+  homePlace: "",
+  homeBottom: "",
+  detailTop: "",
+  detailPlace: "",
+  detailBottom: ""
+};
+  
 const translations = {
   de: {
     label: "Deutsch",
@@ -498,14 +508,14 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-  homeEls.top.textContent = t.homeTop;
-  homeEls.place.textContent = t.homePlace;
-  homeEls.bottom.textContent = t.homeBottom;
+  homeEls.top.textContent = headerTexts.homeTop;
+  homeEls.place.textContent = headerTexts.homePlace;
+  homeEls.bottom.textContent = headerTexts.homeBottom;
   homeEls.pick.textContent = t.pickText;
 
-  detailEls.top.textContent = t.detailTop;
-  detailEls.place.textContent = t.detailPlace;
-  detailEls.bottom.textContent = t.detailBottom;
+  detailEls.top.textContent = headerTexts.detailTop;
+  detailEls.place.textContent = headerTexts.detailPlace;
+  detailEls.bottom.textContent = headerTexts.detailBottom;
   detailEls.intro.textContent = t.intro;
   detailEls.strip.textContent = t.stripText;
   detailEls.date.textContent = t.dateValue;
