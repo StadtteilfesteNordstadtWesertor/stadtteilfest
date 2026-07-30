@@ -11,7 +11,7 @@
     --pink-dark: #d89bc6;
     --ink: #111111;
     --white: rgba(255,255,255,0.9);
-    --panel: rgba(255,255,255,0.76);
+    --panel: rgba(255,255,255,0.86);
     --shadow: rgba(0,0,0,0.18);
   }
   * { box-sizing: border-box; }
@@ -19,15 +19,11 @@
   body {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--ink);
-    background: #e9e1e7;
+    background: #7e57c2; /* simple purple background */
   }
   .app {
     min-height: 100vh;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)),
-      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAA[...]');
-    background-position: center top;
-    background-size: cover;
+    background-color: #7e57c2; /* simple purple background */
     padding: 10px;
   }
   .frame {
@@ -55,21 +51,17 @@
   .eyebrow {
     font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
     letter-spacing: 0.35em;
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(20px, 4.5vw, 32px);
     line-height: 1.1;
     font-weight: 700;
     text-align: center;
-  }
-  .headline-img {
-    width: min(92%, 760px);
-    display: block;
-    margin: 0 auto;
+    color: var(--white);
   }
   .place {
     font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.28em;
-    font-size: clamp(26px, 7vw, 52px);
+    font-size: clamp(22px, 6vw, 44px);
     line-height: 1;
     color: var(--pink);
     text-shadow:
@@ -82,15 +74,16 @@
   .subline {
     font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
     letter-spacing: 0.18em;
-    font-size: clamp(18px, 4vw, 28px);
+    font-size: clamp(16px, 3.6vw, 24px);
     line-height: 1.2;
     margin-bottom: 8px;
+    color: var(--white);
   }
   .pick-text {
     font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-    font-size: clamp(18px, 4.4vw, 28px);
+    font-size: clamp(16px, 3.8vw, 22px);
     line-height: 1.25;
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.9);
     padding: 10px 16px;
     border-radius: 18px;
   }
@@ -108,13 +101,10 @@
     color: #111;
     padding: 14px 12px;
     font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     box-shadow: 0 8px 18px var(--shadow);
     cursor: pointer;
-  }
-  .lang-btn:active {
-    transform: translateY(1px);
   }
 
   .topbar {
@@ -134,25 +124,9 @@
     font-weight: 700;
     box-shadow: 0 5px 14px rgba(0,0,0,0.08);
   }
-  .back-btn {
-    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-    cursor: pointer;
-  }
-  .select-wrap select {
-    appearance: none;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+  .back-btn { cursor: pointer; }
+  .select-wrap select { appearance: none; }
 
-  .detail-hero {
-    text-align: center;
-    padding: 6px 4px 2px;
-  }
-  .detail-hero .headline-img {
-    width: min(94%, 700px);
-  }
-  .detail-hero .place {
-    margin-top: 10px;
-  }
   .panel {
     max-width: 840px;
     margin: 14px auto 18px;
@@ -160,79 +134,15 @@
     padding: 16px 14px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.05);
   }
-  .intro {
-    margin: 0 0 10px;
-    font-size: clamp(21px, 4.8vw, 30px);
-    line-height: 1.25;
-    font-weight: 800;
-    font-family: 'Patrick Hand', cursive;
-  }
-  .copy {
-font-family: 'Patrick Hand', cursive;
-font-size: clamp(20px,4vw,28px);
-line-height: 1.35;
-}
-  [dir="rtl"] .copy,
-[dir="rtl"] .intro,
-[dir="rtl"] .strip,
-[dir="rtl"] .fact,
-[dir="rtl"] button {
-  font-family: 'Noto Naskh Arabic', serif;
-}
-  [dir="rtl"] .copy,
-[dir="rtl"] .intro {
-  text-align: right;
-}
-  [dir="rtl"] .copy {
-  line-height: 1.6;
-}
-  
-  .copy p {
-    margin: 0 0 10px;
-  }
-  
-  .strip {
-    text-align: center;
-    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-    font-size: clamp(24px, 5.8vw, 42px);
-    line-height: 1.2;
-    margin: 10px 0 12px;
-    font-weight: 700;
-  }
-  .symbols {
-    width: min(100%, 760px);
-    display: block;
-    margin: 0 auto 10px;
-  }
-  .facts {
-    max-width: 860px;
-    margin: 12px auto 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-  .fact {
-    text-align: center;
-    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
-    font-size: clamp(22px, 4.8vw, 32px);
-    line-height: 1.15;
-    letter-spacing: 0.14em;
-    font-weight: 700;
-  }
-  .footer-note {
-    max-width: 840px;
-    margin: 16px auto 0;
-    background: rgba(255,255,255,0.7);
-    padding: 10px 12px;
-    font-size: 14px;
-    line-height: 1.45;
-  }
-  @media (min-width: 760px) {
-    .facts {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-  }
+  .intro { font-family: 'Patrick Hand', cursive; font-size: clamp(18px,4vw,26px); margin: 0 0 10px; }
+  .copy { font-family: 'Patrick Hand', cursive; font-size: clamp(18px,3.8vw,24px); line-height: 1.35; }
+  [dir="rtl"] .copy, [dir="rtl"] .intro, [dir="rtl"] .fact, [dir="rtl"] button { font-family: 'Noto Naskh Arabic', serif; }
+  [dir="rtl"] .copy, [dir="rtl"] .intro { text-align: right; }
+  .copy p { margin: 0 0 10px; }
+
+  .facts { max-width: 860px; margin: 12px auto 0; display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .fact { text-align: center; font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive; font-size: clamp(18px,3.8vw,26px); line-height: 1.15; letter-spacing: 0.14em; font-weight: 700; }
+  .footer-note { max-width: 840px; margin: 16px auto 0; background: rgba(255,255,255,0.7); padding: 10px 12px; font-size: 14px; line-height: 1.45; }
 </style>
 </head>
 <body>
@@ -242,7 +152,6 @@ line-height: 1.35;
     <section id="screen-home" class="screen">
       <div class="hero-center">
         <div class="eyebrow" id="homeTop">Tischtennistunier und Nachbarschaftsgrillen</div>
-        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]"/>
         <div class="place" id="homePlace">wesertor</div>
         <div class="subline" id="homeBottom">für Frauen, Kinder und Queers</div>
         <div class="pick-text" id="pickText">Sprache auswählen</div>
@@ -253,14 +162,11 @@ line-height: 1.35;
     <section id="screen-detail" class="screen hidden">
       <div class="topbar">
         <button class="back-btn" id="backButton">← Sprachen</button>
-        <div class="select-wrap">
-          <select id="languageSelect" aria-label="Sprache wählen"></select>
-        </div>
+        <div class="select-wrap"><select id="languageSelect" aria-label="Sprache wählen"></select></div>
       </div>
 
       <div class="detail-hero">
         <div class="eyebrow" id="detailTop">Tischtennistunier und Nachbarschaftsgrillen</div>
-        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]"/>
         <div class="place" id="detailPlace">wesertor</div>
         <div class="subline" id="detailBottom">für Frauen, Kinder und Queers</div>
       </div>
@@ -269,9 +175,6 @@ line-height: 1.35;
         <p class="intro" id="intro"></p>
         <div class="copy" id="contentCopy"></div>
       </div>
-
-      <div class="strip" id="stripText"></div>
-      <img class="symbols" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAH0CAYAAAApE3neAAAQAElEQVR4AeydCdxV097H/8twDdeQOTKUeZbKUKYioUgSMqVkyBAhlCFlykxS5iFyTZkyNVGJMgslQyhTuCIz97ret+/OqfPsZ+[...]"/>
 
       <div class="facts">
         <div class="fact" id="dateValue"></div>
@@ -291,7 +194,7 @@ const headerTexts = {
   detailPlace: "",
   detailBottom: ""
 };
-  
+
 const translations = {
   de: {
     label: "Deutsch",
@@ -318,12 +221,12 @@ const translations = {
   },
   en: {
     label: "English",
-    homeTop: "feminist",
+    homeTop: "Tischtennistunier und Nachbarschaftsgrillen",
     homePlace: "Sodensternpark",
     homeBottom: "for women, kids and queers",
     pickText: "Choose your language",
     backText: "← Languages",
-    detailTop: "feminist",
+    detailTop: "Tischtennistunier und Nachbarschaftsgrillen",
     detailPlace: "wesertor",
     detailBottom: "for women, kids and queers",
     intro: "Dear neighbours,",
@@ -335,108 +238,90 @@ const translations = {
     ],
     stripText: "",
     dateValue: "09.08.",
-    timeValue: "1:00 pm",
+    timeValue: "13:00",
     locationValue: "Sodensternstraße Park",
     footerNote: ""
   },
   es: {
     label: "Español",
-    homeTop: "festival feminista",
-    homePlace: "Sodensternpark",
-    homeBottom: "para mujeres, peques y queers",
-    pickText: "Elige tu idioma",
-    backText: "← Idiomas",
-    detailTop: "festival feminista",
-    detailPlace: "wesertor",
-    detailBottom: "para mujeres, peques y queers",
-    intro: "Les invitamos cordialmente a nuestra fiesta del barrio el 10 de mayo en el Sodensternpark, de 14:00 a 18:00 horas.",
-    paragraphs: [
-      "Somos mujeres y personas queer del barrio. Queremos crear momentos en los que podamos reunirnos como vecinas y conocernos.",
-      "¡Por eso organizamos esta fiesta! Habrá un bufé de tartas, un programa para niños y una pequeña exposición sobre nuestra ciudad.",
-      "Corre la voz:",
-      "¡Trae a tus amigas, vecinas e hijos! También agradeceremos cualquier tarta o aperitivo salado para el bufé.",
-      "¡Nos vemos en la fiesta en el parque Sodensternpark!"
-    ],
+    homeTop: "",
+    homePlace: "",
+    homeBottom: "",
+    pickText: "",
+    backText: "",
+    detailTop: "",
+    detailPlace: "",
+    detailBottom: "",
+    intro: "",
+    paragraphs: [],
     stripText: "",
-    dateValue: "10.05.",
-    timeValue: "14:00-18:00",
-    locationValue: "sodensternpark",
-    footerNote: "Más adelante pueden añadir aquí información sobre accesibilidad, baños, espacios tranquilos u otros detalles prácticos."
+    dateValue: "",
+    timeValue: "",
+    locationValue: "",
+    footerNote: ""
   },
   fr: {
     label: "Français",
-    homeTop: "fête féministe",
-    homePlace: "Sodensternpark",
-    homeBottom: "pour les femmes, les enfants et les queers",
-    pickText: "Choisissez votre langue",
-    backText: "← Langues",
-    detailTop: "fête féministe",
-    detailPlace: "wesertor",
-    detailBottom: "pour les femmes, les enfants et les queers",
-    intro: "Nous vous invitons cordialement à notre fête de quartier le 10 mai au Sodensternpark de 14h à 18h.",
-    paragraphs: [
-      "Nous, ce sont des femmes et des personnes queer du quartier. Nous souhaitons créer des moments où nous pouvons nous réunir en tant que voisin·es et faire connaissance.",
-      "C'est pourquoi nous organisons cette fête ! Il y aura un buffet de gâteaux, un programme pour les enfants et une petite exposition sur notre ville.",
-      "Faites passer le mot :",
-      "Venez avec vos amies, vos voisines et vos enfants ! Nous serions également ravies si vous apportiez des gâteaux ou des mets salés pour le buffet.",
-      "Rendez-vous à la fête au Sodensternpark !"
-    ],
+    homeTop: "",
+    homePlace: "",
+    homeBottom: "",
+    pickText: "",
+    backText: "",
+    detailTop: "",
+    detailPlace: "",
+    detailBottom: "",
+    intro: "",
+    paragraphs: [],
     stripText: "",
-    dateValue: "10.05.",
-    timeValue: "14h00-18h00",
-    locationValue: "sodensternpark",
-    footerNote: "Vous pourrez ajouter ici plus tard des informations sur l’accessibilité, les toilettes, les espaces calmes ou d’autres détails pratiques."
+    dateValue: "",
+    timeValue: "",
+    locationValue: "",
+    footerNote: ""
   },
   tr: {
     label: "Türkçe",
-    homeTop: "feminist",
-    homePlace: "Sodensternpark",
-    homeBottom: "kadınlar, çocuklar ve queerler için",
-    pickText: "Dilini seç",
-    backText: "← Diller",
-    detailTop: "feminist",
-    detailPlace: "wesertor",
-    detailBottom: "kadınlar, çocuklar ve queerler için",
-    intro: "10 Mayıs günü saat 14-18 arasında Sodensternpark'ta düzenleyeceğimiz mahalle festivaline sizleri davet ediyoruz.",
-    paragraphs: [
-      "Bizler, mahalledeki kadınlar ve queer bireyleriz. Mahalle sakinleri olarak bir araya gelip tanışabileceğimiz anlar yaşamak istiyoruz.",
-      "Bu nedenle bu festivali düzenliyoruz! Kek büfesi, çocuklar için program ve şehrimizle ilgili küçük bir sergi olacak.",
-      "Arkadaşlarınıza da haber verin:",
-      "Arkadaşlarınızı, komşularınızı ve çocuklarınızı da getirin! Ayrıca, büfeye kek veya tuzlu atıştırmalıklar getirirseniz çok seviniriz.",
-      "Sodensternpark'taki festivalde görüşmek üzere!"
-    ],
+    homeTop: "",
+    homePlace: "",
+    homeBottom: "",
+    pickText: "",
+    backText: "",
+    detailTop: "",
+    detailPlace: "",
+    detailBottom: "",
+    intro: "",
+    paragraphs: [],
     stripText: "",
-    dateValue: "10.05.",
-    timeValue: "14:00-18:00",
-    locationValue: "sodensternpark",
-    footerNote: "Daha sonra erişilebilirlik, tuvaletler, sessiz alanlar veya diğer pratik bilgiler burada eklenebilir."
+    dateValue: "",
+    timeValue: "",
+    locationValue: "",
+    footerNote: ""
   },
   ar: {
-  label: "العربية",
-  homeTop: "مهرجان نسوي",
-  homePlace: "Sodensternpark",
-  homeBottom: "للنساء والأطفال ومجتمع الميم",
-  pickText: "اختاروا اللغة",
-  backText: "← اللغات",
-  detailTop: "مهرجان نسوي",
-  detailPlace: "فيسرتور",
-  detailBottom: "للنساء والأطفال ومجتمع الميم",
-  intro: "دعوة إلى بطولة تنس الطاولة وحفل شواء للجيران",
-  paragraphs: [
-    "أعزاءنا الجيران،",
-    "نحن مجموعة من سكان Weserspitze، ونرغب في التعرّف إلى جيراننا بشكل أفضل.",
-    "لذلك يسعدنا دعوتكم يوم 09.08 ابتداءً من الساعة 13:00 للحضور إلى الحديقة الموجودة في Sodensternstraße.",
-    "ستُقام هناك، إلى جانب أنشطة أخرى، بطولة لتنس الطاولة، ويمكنكم الفوز بجوائز رائعة! كما سنقيم أيضًا حفل شواء.",
-    "سيكون الطعام على شكل بوفيه يشارك فيه الجميع، لذلك يمكنكم إحضار شيء لذيذ للأكل والمشاركة به. ولمعرفة ما سيحضره كل شخص إلى البوفيه وتنظيم الأمر بشكل أفضل، يمكنكم تسجيل ما ستجلبونه عبر الرابط التالي: <a href=\"https://pad.riseup.net/p/GrillenWeserspitze\" target=\"_blank\" rel=\"noopener\">pad.riseup.net/p/GrillenWeserspitze</a>",
-    "نتطلع إلى قضاء فترة بعد ظهر جميلة وممتعة معًا!",
-    "الجميع مرحّب بهم!"
-  ],
-  stripText: "",
-  dateValue: "09.08.",
-  timeValue: "13:00",
-  locationValue: "حديقة Sodensternstraße",
-  footerNote: ""
-},
+    label: "العربية",
+    homeTop: "مهرجان نسوي",
+    homePlace: "Sodensternpark",
+    homeBottom: "للنساء والأطفال ومجتمع الميم",
+    pickText: "اختاروا اللغة",
+    backText: "← اللغات",
+    detailTop: "مهرجان نسوي",
+    detailPlace: "فيسرتور",
+    detailBottom: "للنساء والأطفال ومجتمع الميم",
+    intro: "دعوة إلى بطولة تنس الطاولة وحفل شواء للجيران",
+    paragraphs: [
+      "أعزاءنا الجيران،",
+      "نحن مجموعة من سكان Weserspitze، ونرغب في التعرّف إلى جيراننا بشكل أفضل.",
+      "لذلك يسعدنا دعوتكم يوم 09.08 ابتداءً من الساعة 13:00 للحضور إلى الحديقة الموجودة في Sodensternstraße.",
+      "ستُقام هناك، إلى جانب أنشطة أخرى، بطولة لتنس الطاولة، ويمكنكم الفوز بجوائز رائعة! كما سنقيم أيضًا حفل شواء.",
+      "سيكون الطعام على شكل بوفيه يشارك فيه الجميع، لذلك يمكنكم إحضار شيء لذيذ للأكل والمشاركة به. ولمعرفة ما سيحضره كل شخص إلى البوفيه وتنظيم الأمر بشكل أفضل، يمكنكم تسجيل ما ستجلبونه عبر الرابط التالي: <a href=\"https://pad.riseup.net/p/GrillenWeserspitze\" target=\"_blank\" rel=\"noopener\">pad.riseup.net/p/GrillenWeserspitze</a>",
+      "نتطلع إلى قضاء فترة بعد ظهر جميلة وممتعة معًا!",
+      "الجميع مرحّب بهم!"
+    ],
+    stripText: "",
+    dateValue: "09.08.",
+    timeValue: "13:00",
+    locationValue: "حديقة Sodensternstraße",
+    footerNote: ""
+  },
   ru: {
     label: "Русский",
     homeTop: "",
@@ -475,11 +360,9 @@ const detailEls = {
   bottom: document.getElementById("detailBottom"),
   intro: document.getElementById("intro"),
   copy: document.getElementById("contentCopy"),
-  strip: document.getElementById("stripText"),
   date: document.getElementById("dateValue"),
   time: document.getElementById("timeValue"),
-  location: document.getElementById("locationValue"),
-  footer: document.getElementById("footerNote")
+  location: document.getElementById("locationValue")
 };
 
 function renderButtons() {
@@ -488,14 +371,14 @@ function renderButtons() {
   Object.entries(translations).forEach(([lang, t]) => {
     const b = document.createElement("button");
     b.className = "lang-btn";
-    b.textContent = t.label;
+    b.textContent = t.label || lang;
     b.type = "button";
     b.addEventListener("click", () => openLanguage(lang));
     btnWrap.appendChild(b);
 
     const opt = document.createElement("option");
     opt.value = lang;
-    opt.textContent = t.label;
+    opt.textContent = t.label || lang;
     select.appendChild(opt);
   });
 }
@@ -508,20 +391,18 @@ function applyLanguage(lang) {
   homeEls.top.textContent = headerTexts.homeTop;
   homeEls.place.textContent = headerTexts.homePlace;
   homeEls.bottom.textContent = headerTexts.homeBottom;
-  homeEls.pick.textContent = t.pickText;
+  homeEls.pick.textContent = t.pickText || "";
 
   detailEls.top.textContent = headerTexts.detailTop;
   detailEls.place.textContent = headerTexts.detailPlace;
   detailEls.bottom.textContent = headerTexts.detailBottom;
-  detailEls.intro.textContent = t.intro;
-  detailEls.strip.textContent = t.stripText;
-  detailEls.date.textContent = t.dateValue;
-  detailEls.time.textContent = t.timeValue;
-  detailEls.location.textContent = t.locationValue;
-  backButton.textContent = t.backText;
+  detailEls.intro.textContent = t.intro || "";
+  detailEls.date.textContent = t.dateValue || "";
+  detailEls.time.textContent = t.timeValue || "";
+  detailEls.location.textContent = t.locationValue || "";
 
   detailEls.copy.innerHTML = "";
-  t.paragraphs.forEach(text => {
+  (t.paragraphs || []).forEach(text => {
     const p = document.createElement("p");
     p.innerHTML = text;
     detailEls.copy.appendChild(p);
@@ -559,10 +440,7 @@ const browserLang = (navigator.language || "de").slice(0,2).toLowerCase();
 const initialLang = translations[langFromUrl] ? langFromUrl : (translations[browserLang] ? browserLang : "de");
 applyLanguage(initialLang);
 
-if (params.get("view") === "detail") {
-  home.classList.add("hidden");
-  detail.classList.remove("hidden");
-}
+if (params.get("view") === "detail") { home.classList.add("hidden"); detail.classList.remove("hidden"); }
 
 select.addEventListener("change", (e) => openLanguage(e.target.value));
 backButton.addEventListener("click", () => goHome(select.value));
