@@ -442,7 +442,24 @@ function applyLanguage(lang) {
   detailEls.copy.innerHTML = "";
   (t.paragraphs || translations.de.paragraphs).forEach(text => {
     const p = document.createElement("p");
-    p.textContent = text;
+    // make pad.riseup.net links clickable
+    if (text.includes('pad.riseup.net')) {
+      const parts = text.split(/(pad\.riseup\.net\/[^\s]+)/);
+      parts.forEach(part => {
+        if (/^pad\.riseup\.net\//.test(part)) {
+          const a = document.createElement('a');
+          a.href = 'https://' + part;
+          a.textContent = part;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          p.appendChild(a);
+        } else {
+          p.appendChild(document.createTextNode(part));
+        }
+      });
+    } else {
+      p.textContent = text;
+    }
     detailEls.copy.appendChild(p);
   });
 
