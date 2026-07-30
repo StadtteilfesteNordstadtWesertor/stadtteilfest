@@ -25,7 +25,7 @@
     min-height: 100vh;
     background-image:
       linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)),
-      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAA[...]
+      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAA[...]
     background-position: center top;
     background-size: cover;
     padding: 10px;
@@ -242,7 +242,7 @@ line-height: 1.35;
     <section id="screen-home" class="screen">
       <div class="hero-center">
         <div class="eyebrow" id="homeTop">Einladung zum</div>
-        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]"/>
         <div class="place" id="homePlace">Tischtennisturnier</div>
         <div class="subline" id="homeBottom">und Nachbarschaftsgrillen</div>
         <div class="pick-text" id="pickText">Sprache auswählen</div>
@@ -260,7 +260,7 @@ line-height: 1.35;
 
       <div class="detail-hero">
         <div class="eyebrow" id="detailTop">Einladung zum</div>
-        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+        <img class="headline-img" src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]"/>
         <div class="place" id="detailPlace">Tischtennisturnier</div>
         <div class="subline" id="detailBottom">und Nachbarschaftsgrillen</div>
       </div>
@@ -271,7 +271,7 @@ line-height: 1.35;
       </div>
 
       <div class="strip" id="stripText"></div>
-      <img class="symbols" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAH0CAYAAAApE3neAAAQAElEQVR4AeydCdxV097H/8twDdeQOTKUeZbKUKYioUgSMqVkyBAhlCFlykxS5iFyTZkyNVGJMgslQyhTuCIz97ret+/OqfPsZ+[...]>
+      <img class="symbols" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAH0CAYAAAApE3neAAAQAElEQVR4AeydCdxV097H/8twDdeQOTKUeZbKUKYioUgSMqVkyBAhlCFlykxS5iFyTZkyNVGJMgslQyhTuCIz97ret+/OqfPsZ+[...]"/>
 
       <div class="facts">
         <div class="fact" id="dateValue"></div>
@@ -428,8 +428,7 @@ function applyLanguage(lang) {
     const p = document.createElement("p");
     // make pad.riseup.net links clickable
     if (text.includes('pad.riseup.net')) {
-      const parts = text.split(/(pad\.riseup\.net\/[^
-\s]+)/);
+      const parts = text.split(/(pad\.riseup\.net\/[^\n\s]+)/);
       parts.forEach(part => {
         if (/^pad\.riseup\.net\//.test(part)) {
           const a = document.createElement('a');
