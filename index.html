@@ -332,12 +332,14 @@ const translations = {
   es: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
   fr: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
   tr: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
-  ar: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" }
+  ar: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
+  ru: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" }
 };
 
 const tileInserts = {
   de: [],
-  en: []
+  en: [],
+  ru: []
 };
 
 const home = document.getElementById("screen-home");
@@ -426,8 +428,7 @@ function applyLanguage(lang) {
     const p = document.createElement("p");
     // make pad.riseup.net links clickable
     if (text.includes('pad.riseup.net')) {
-      const parts = text.split(/(pad\.riseup\.net\/[^
-\s]+)/);
+      const parts = text.split(/(pad\.riseup\.net\/[^\s]+)/);
       parts.forEach(part => {
         if (/^pad\.riseup\.net\//.test(part)) {
           const a = document.createElement('a');
