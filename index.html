@@ -25,7 +25,7 @@
     min-height: 100vh;
     background-image:
       linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)),
-      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAA[...]
+      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAA[...]
     background-position: center top;
     background-size: cover;
     padding: 10px;
@@ -317,7 +317,7 @@ const translations = {
     footerNote: "Infos zu Barrierefreiheit, Toiletten und Kinderbetreuung folgen hier später."
   },
   en: {
-    label: "",
+    label: "English",
     pickText: "",
     backText: "",
     intro: "",
@@ -329,11 +329,11 @@ const translations = {
     footerNote: ""
   },
   // Fallback shorter entries for other languages; use German as default where not provided
-  es: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
-  fr: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
-  tr: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
-  ar: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
-  ru: { label: "", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" }
+  es: { label: "Español", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
+  fr: { label: "Français", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
+  tr: { label: "Türkçe", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
+  ar: { label: "العربية", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" },
+  ru: { label: "Русский", pickText: "", backText: "", intro: "", paragraphs: [], stripText: "", dateValue: "", timeValue: "", locationValue: "", footerNote: "" }
 };
 
 const tileInserts = {
@@ -428,7 +428,8 @@ function applyLanguage(lang) {
     const p = document.createElement("p");
     // make pad.riseup.net links clickable
     if (text.includes('pad.riseup.net')) {
-      const parts = text.split(/(pad\.riseup\.net\/[^\s]+)/);
+      const parts = text.split(/(pad\.riseup\.net\/[^
+\s]+)/);
       parts.forEach(part => {
         if (/^pad\.riseup\.net\//.test(part)) {
           const a = document.createElement('a');
